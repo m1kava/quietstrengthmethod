@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "localhost": "npm run dev",
+    "server": "npx decap-server"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.9",

@@ -1,5 +1,5 @@
-// Place any global data in this file.
-// You can import this data from anywhere in your site by using the `import` keyword.
-
-export const SITE_TITLE = 'Astro Blog';
-export const SITE_DESCRIPTION = 'Welcome to my website!';
+// src/consts.ts
+export const SITE_TITLE = 'Quiet Strength Method';
+export const SITE_DESCRIPTION = 'Build inner power. Regenerate from within. No noise.';
+export const SITE_AUTHOR = 'Quiet Strength Method';
+export const SITE_URL = 'https://quietstrengthmethod.com'; // <- set your real domain
