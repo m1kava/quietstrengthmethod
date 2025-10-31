@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import { SITE_AUTHOR, SITE_URL } from '../consts';
+
+type Props = CollectionEntry<'blog'>['data'];
+const { title, description, pubDate, updatedDate, heroImage, canonical } = Astro.props;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description,
+  datePublished: pubDate,
+  dateModified: updatedDate ?? pubDate,
+  image: heroImage ? new URL(heroImage.src, SITE_URL).href : undefined,
+  author: { "@type": "Person", name: SITE_AUTHOR },
+  mainEntityOfPage: new URL(Astro.url.pathname, SITE_URL).toString()
+};
+---
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} image={heroImage} canonical={canonical} />
+    <script type="application/ld+json">{JSON.stringify(schema)}</script>
+    <style>
+      main{ width:100%; max-width:100%; margin:0; }
+      .hero{ width:100%; }
+      .hero img{ display:block; margin:0 auto; border-radius:12px; box-shadow:var(--shadow); }
+      .prose{ width:var(--maxw); max-width:calc(100% - 2rem); margin:auto; padding:1rem; }
+      .title{ margin-bottom:1rem; padding:1rem 0; text-align:center; line-height:1; }
+      .date{ margin-bottom:.5rem; color:rgb(var(--ink-muted)); }
+      .last-updated-on{ font-style:italic; color:rgb(var(--ink-muted)); }
+    </style>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <article>
+        <div class="hero">
+          {heroImage && <Image width={1200} height={630} src={heroImage} alt="" />}
+        </div>
+        <div class="prose">
+          <div class="title">
+            <div class="date">
+              <FormattedDate date={pubDate} />
+              {updatedDate && (<div class="last-updated-on">Last updated on <FormattedDate date={updatedDate} /></div>)}
+            </div>
+            <h1>{title}</h1>
+            <hr />
+          </div>
+          <slot />
+        </div>
+      </article>
+    </main>
+    <Footer />
+  </body>
+</html>

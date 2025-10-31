@@ -1,0 +1,44 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+---
+
+<!doctype html>
+<html lang="en">
+	<head><BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} /></head>
+	<body>
+		<Header />
+		<main>
+			<section style="padding: 4rem 0 1rem;">
+				<h1 style="font-size: clamp(2.6rem,6vw,4rem); margin:0;">
+					Quiet Strength Method
+				</h1>
+				<p style="max-width:60ch; margin:.75rem 0 0;">
+					Build inner power. Regenerate from within. No noise.
+				</p>
+			</section>
+
+			<section class="grid" style="margin-top:2rem;">
+				<div>
+					<h3>Enter Repair State</h3>
+					<p>
+						Switch from survival to regeneration in minutes using
+						breath + focus.
+					</p>
+					<a href="/blog">Read the method →</a>
+				</div>
+				<div>
+					<h3>Symbol Anchoring</h3>
+					<p>
+						Pair a visual mark with breathwork to trigger body
+						repair on command.
+					</p>
+					<a href="/blog">Build your anchor →</a>
+				</div>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
